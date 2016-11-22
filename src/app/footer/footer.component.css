@@ -1,0 +1,42 @@
+footer {
+    background: #a94442;
+    color: #FFFFFF;
+    font-size: 14px;
+    padding: 20px;
+    height:300px;
+    margin-top: 80px;
+}
+ 
+     .min {
+     width: 600px;
+     height: 400px;
+     margin-top: 10px;
+     margin-bottom: 15px
+    }
+
+    .maxtext{
+     height:140px
+    }
+
+  /* @media only screen and (max-width : 600px) {
+	.min {
+     width: 300px;
+     height:200px;
+      }
+  }  
+  */  
+      @media only screen and (max-width : 400px) {
+	.min {
+     width: 400px;
+     height:266px;
+      }
+  } 
+
+    @media only screen and (max-width : 300px) {
+	.min {
+     width: 200px;
+     height:133px;
+      }
+    
+  
+ }

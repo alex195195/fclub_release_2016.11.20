@@ -1,0 +1,222 @@
+<fc-header></fc-header>
+<div class="row">
+  <div class="large-6 columns">
+       <button (click)="changeState('add')" class="btn btn-primary">Додати</button> 
+  </div> 
+    <div class="large-4 columns">
+        <label> Фiльтр категорiй
+        <select (change)="filterCategory(filteredCategory.value)" #filteredCategory>
+            <option value="0">Вибрати</option>
+            <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+        </select>
+        </label>
+    </div>  
+</div>
+
+<!--Add member-->
+<div *ngIf="appState == 'add'" class="row">
+  <div class="large-12 columns">
+    <h3>Додати</h3>
+    <form (submit)="addMember(
+        name.value,
+        category.value,
+        picture.value,
+        position.value,
+        data_both.value,
+        growth.value,
+        weight.value,
+        number.value)">
+        <div class="row">
+          <div class="large-6 columns">
+            <label> ФIП
+              <input type="text" placeholder="Mame" #name>
+            </label>
+          </div>  
+          <div class="large-6 columns">
+            <label>Категорiя
+              <select #category>
+                <option value="0">Вибрати</option>
+                <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+              </select> 
+            </label>
+          </div>  
+        </div>
+        
+        <div class="row">
+          <div class="medium-6 columns">
+            <label>Фото
+              <input type="text" placeholder="Введiть адресу фото" #picture>
+            </label>
+          </div>
+          <div class="medium-6 columns">
+            <label>Амплуа
+               <input type="text" placeholder="Амплуа" #position>
+            </label>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="medium-6 columns">
+            <label>Дата народження
+              <input type="text" placeholder="Дата народження" #data_both>
+            </label>
+          </div>
+          <div class="medium-6 columns">
+            <label>Зрiст
+              <input type="text" placeholder="Зрiст" #growth>
+            </label>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="medium-6 columns">
+            <label>Вага
+              <input type="text" placeholder="Вага" #weight>
+            </label>
+          </div>
+          <div class="medium-6 columns">
+            <label>Номер
+              <input type="text" placeholder="Номер" #number>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12">
+            <input type="submit" class="button" value="Вiдправити">  
+          </div>  
+        </div>
+    </form>  
+  </div> 
+</div><!--Add member-->
+
+<!-- /Edit member -->
+<div *ngIf="appState == 'edit'" class="row">
+  <div class="large-12 columns">
+    <h3>Правити</h3>
+    <form (submit)="updateMember()">
+        <div class="row">
+          <div class="large-6 columns">
+            <label> ФIП
+              <input type="text"  [(ngModel)]="activeName" name="activeName" placeholder="ФIП" #name>
+            </label>
+          </div>  
+          <div class="large-6 columns">
+            <label>Категорiя
+              <select [(ngModel)]="activeCategory" name="activeCategory" #category>
+                <option value="0">Вибрати</option>
+                <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+              </select> 
+            </label>
+          </div>  
+        </div>
+        
+        <div class="row">
+          <div class="medium-6 columns">
+            <label>Фото
+              <input type="text" [(ngModel)]="activePicture" name="activePicture" placeholder="Введiть адресу фото" #picture>
+            </label>
+          </div>
+          <div class="medium-6 columns">
+            <label>Амплуа
+               <input type="text" [(ngModel)]="activePosition" name="activePosition" placeholder="Амплуа" #position>
+            </label>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="medium-6 columns">
+            <label>Дата народження
+              <input type="text" [(ngModel)]="activeData_both" name="activeData_both" placeholder="Дата народження" #data_both>
+            </label>
+          </div>
+          <div class="medium-6 columns">
+            <label>Зрiст
+              <input type="text" [(ngModel)]="activeGrowth" name="activeGrowth" placeholder="Зрiст" #growth>
+            </label>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="medium-6 columns">
+            <label>Вага
+              <input type="text" [(ngModel)]="activeWeight" name="activeWeight" placeholder="Вага" #weight>
+            </label>
+          </div>
+          <div class="medium-6 columns">
+            <label>Номер
+              <input type="text" [(ngModel)]="activeNumber" name="activeNumber" placeholder="Номер" #number>
+            </label>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="large-12">
+            <input type="submit" class="button" value="Вiдправити">  
+          </div>  
+        </div>
+    </form>  
+  </div> 
+</div><!-- /Edit member -->
+
+
+<div *ngIf="appState == 'extend'">
+    <div class="row">
+        <div class="col-lg-12">
+             <button (click)="changeState('default')" class="button alert">Повернутися</button>
+        </div>  
+    </div>
+    <div *ngFor="let member of members">
+        <div *ngIf="member.$key == activeKey">
+        <div class="row">
+        <div class="col-lg-4 col-lg-1-offcet">
+            <h4>{{member.name}}</h4>
+            <p>Дата народження: {{member.data_both}}</p>
+            <p>Номер: {{member.number}}</p>
+            <h5>{{member.position}}</h5>
+        </div>
+        <div class="col-lg-4 col-lg-1-offcet">
+            <a href="#"><img src="{{member.picture}}" height="230" width="283"></a>
+        </div>  
+        <div class="col-lg-4 col-lg-1-offcet" style="position: relative">
+            <h4>Фiзичнi данi</h4>
+            <ul>
+                <li>Зрiст: {{member.growth}}</li>  
+                <li>Вага: {{member.weight}}</li>  
+            </ul>
+        </div>  
+        </div>
+        </div>
+    </div>
+</div>    
+<br>
+<div class="row">
+    <div class="col-lg-12">
+    	<div *ngIf="members">
+            <table>
+            	<thead>
+            		<tr>
+            			<th>ФIП</th>
+            			<th>Амплуа</th>
+            			<th>Дата нароження</th>
+            			<th></th>
+            		</tr>
+            	</thead>
+            	<tbody>
+            		<tr *ngFor="let member of members">
+            		    <td>{{member.name}}</td>
+            		    <td>{{member.position}}</td>
+            		    <td>{{member.data_both}}</td>
+            		    <td>
+                      <div class="btn-group" role="group" aria-label="...">
+                          <button (click)="changeState('extend', member.$key)" type="button" class="btn btn-primary">Бiльше</button>
+                          <button (click)="showEdit(member)" type="button" class="btn btn-success">Правити</button>
+                          <button (click)="deleteMember(member.$key)" type="button" class="btn btn-danger">Выдалити</button>
+                      </div>
+              		  </td>	
+            		</tr>
+            	</tbody> 
+            </table>
+    	</div>
+    </div>		
+</div>
+<app-footer></app-footer>

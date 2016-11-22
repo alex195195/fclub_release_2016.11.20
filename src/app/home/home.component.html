@@ -1,0 +1,24 @@
+<div class="jumbotron">
+    <div class="container">
+    <div class="col-md-6 col-md-offset-3">
+        <h1>Привiт {{currentUser.firstName}}!</h1>
+      
+        <h3>Всi зареєстровані користувачi</h3>
+        <ul>
+            <li *ngFor="let user of users">
+                {{user.username}} ({{user.firstName}} {{user.lastName}})
+                - <a (click)="deleteUser(user.id)">Видалити</a>
+            </li>
+        </ul>
+        <p><a [routerLink]="['/novelties']">Перейти на сайт</a></p>
+        <p><a [routerLink]="['/login']">Увiйти</a></p>
+    </div>
+</div>
+</div>
+
+<!-- <app-alert></app-alert> -->
+
+<!-- 
+
+<li routerLinkActive="active"><a [routerLink]="['/novelties']">Головна</a></li>
+ -->

@@ -1,0 +1,1 @@
+export { NoveltyEditComponent } from './novelty-edit.component';

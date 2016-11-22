@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-12">
+    <img src="{{selectedNovelty?.image}}" alt="" class="img-responsive">
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h3>{{selectedNovelty?.name}}</h3>
+  </div>
+  <div class="col-xs-12">
+     <button class="btn btn-primary" (click)="onEdit()">Корегувати</button>
+     <button class="btn btn-danger" (click)="onDelete()">Видалити</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <p>{{selectedNovelty?.description}}</p>
+  </div>
+</div>

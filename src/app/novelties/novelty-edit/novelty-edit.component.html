@@ -1,0 +1,58 @@
+
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="noveltyForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success" [disabled]="!noveltyForm.valid">Зберегти</button>
+          <a class="btn btn-danger" (click)="onCancel()">Закрити</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Назва новини</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="image-url">Посилання на фото</label>
+            <input
+              type="text"
+              id="image-url"
+              class="form-control"
+              formControlName="image"
+              #imageUrl>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="img">
+            <img [src]="imageUrl.value">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="content">Короткий опис</label>
+            <textarea
+              type="text"
+              id="content"
+              rows="6"
+              class="form-control"
+              formControlName="description"></textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div> 
+</div>

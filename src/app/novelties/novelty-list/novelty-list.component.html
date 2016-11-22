@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-12">
+    <a class="btn btn-success" [routerLink]="['new']">Додати новину</a>
+  </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+	    <ul class="list-group">
+		    <fc-novelty-item *ngFor="let novelty of novelties; let i = index" [novelty]="novelty" [noveltyId]="i"></fc-novelty-item>
+		</ul>
+    </div>
+</div>
+
